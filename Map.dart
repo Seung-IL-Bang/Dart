@@ -1,4 +1,4 @@
-/*  Map은 “Key : Value”의 형태
+/*  Map(Dictionary)은 “Key : Value”의 형태
 1) Key는 중복 불가
 2) Value는 중복 가능
  */
