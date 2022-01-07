@@ -39,4 +39,5 @@ void main() {
 
   // Print static memebr variable only
   print(Point.static_stringify);
+  //print(p3.static_stringify); -> Error : can't be accessed through an instance.
 }

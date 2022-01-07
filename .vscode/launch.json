@@ -8,7 +8,8 @@
             "name": "Dart & Flutter",
             "request": "launch",
             "type": "dart",
-            "program": "StaticSyntax.dart"
+            "program": "Asynchrony5.dart"/*,
+            "console": "terminal"*/
         }
     ]
 }
