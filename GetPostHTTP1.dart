@@ -35,13 +35,13 @@ Future handleRequest(HttpRequest req) async {
     case 'GET':
       // Print log message and activate HTTP Get Request handler.
       stdout.writeln(
-          "${DateTime.now()}: GET ${req.uri}"); // req.uri.path -> URI의 Path정보만출력.
-      await handleGetRequest; // await 지우고 (parameter) 사용시 에러 안뜸
+          "${DateTime.now()}: GET ${req.uri.queryParameters}"); // req.uri.queryParameters['q'] : URI 정보가 map 형태로 관리하는 parameter 정보 중 'q'를 key값으로 하는 경우의 value를 도출.
+      handleGetRequest(req);
       break;
     // #3 Other Requests.
     default:
       stdout.writeln("${DateTime.now()}: ${req.method} not allowed");
-      await handleNotAllowedRequest;
+      handleNotAllowedRequest(req);
   }
 }
 
