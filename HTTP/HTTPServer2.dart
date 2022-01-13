@@ -2,7 +2,7 @@ import "dart:io";
 import 'dart:async';
 
 // Handler for HTTP Get Request.
-void handleGetRequest(HttpRequest req) {
+Future handleGetRequest(HttpRequest req) async {
   // #1 Retrieve an associated HttpResponse object in HttpRequst object.
   HttpResponse res = req.response;
 
@@ -10,11 +10,11 @@ void handleGetRequest(HttpRequest req) {
   res.write('${DateTime.now()}: Hello World!');
 
   // #3 Close the response and send it to the client.
-  res.close();
+  await res.close();
 }
 
 // Handler for not allowed HTTP Request.
-void handleNotAllowedRequest(HttpRequest req) {
+Future handleNotAllowedRequest(HttpRequest req) async {
   // #1 Retrieve an associated HttpResponse object in HttpRequst object.
   HttpResponse res = req.response;
 
@@ -24,7 +24,7 @@ void handleNotAllowedRequest(HttpRequest req) {
     ..write('${DateTime.now()}: Unsupported request: ${req.method}.');
 
   // #3 Close the response and send it to the client.
-  res.close();
+  await res.close();
 }
 
 // Handler for HTTP Request.
@@ -36,12 +36,12 @@ Future handleRequest(HttpRequest req) async {
       // Print log message and activate HTTP Get Request handler.
       stdout.writeln(
           "${DateTime.now()}: GET ${req.uri}"); // req.uri.path -> URI의 Path정보만출력.
-      await handleGetRequest; // await 지우고 (parameter) 사용시 에러 안뜸
+      await handleGetRequest(req); // await 지우고 (parameter) 사용시 에러 안뜸
       break;
     // #3 Other Requests.
     default:
       stdout.writeln("${DateTime.now()}: ${req.method} not allowed");
-      await handleNotAllowedRequest;
+      await handleNotAllowedRequest(req);
   }
 }
 
